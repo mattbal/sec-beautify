@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "SEC Beautify",
-  "version": "1.0",
+  "version": "1.1",
   "description": "Makes SEC reports easier to read",
   "homepage_url": "https://github.com/mattbal/sec-beautify",
   "icons": {
