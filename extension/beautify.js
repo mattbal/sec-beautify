@@ -18,8 +18,6 @@ function recursiveSearch(el) {
 }
 
 function beautify(content) {
-  console.log('called beautify!')
-
   // Inject styles to the iframe
   const style = iframe.contentDocument.createElement('style')
   style.textContent = `
@@ -108,36 +106,17 @@ function beautify(content) {
   })
 }
 
-console.log('loaded script')
-
 const iframe = document.querySelector('#ixvFrame')
 
 function observeIframeBody() {
-  console.log('called observeIframeBody')
   const body = iframe.contentDocument?.body
   if (!body) return false;
 
   const observer = new MutationObserver(() => {
-    console.log('mutation occurred')
     const content = body.querySelector('#xbrl-section-current')
     if (content) {
-      console.log('found iframe child. Disconnecting')
-      console.log('iframe child: ', { 'children': content.children })
       observer.disconnect()
-
       beautify(content)
-
-      // const contentObserver = new MutationObserver(() => {
-      //   console.log('content mutation occurred')
-      //   contentObserver.disconnect()
-      //   beautify(content)
-      // })
-
-      // contentObserver.observe(content, {
-      //   subtree: true,
-      //   childList: true,
-      // })
-      // console.log('observing content')
     }
   })
 
@@ -150,12 +129,9 @@ function observeIframeBody() {
 }
 
 if (iframe) {
-  console.log('iframe found, adding listener')
   iframe.addEventListener('load', () => {
-    console.log('checking if body exists')
     const observer = observeIframeBody()
     if (!observer) {
-      console.log('body does not exist, adding DOMContentLoaded listener')
       iframe.contentDocument.addEventListener('DOMContentLoaded', () => observeIframeBody(), {
         once: true,
       })
