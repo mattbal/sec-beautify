@@ -72,9 +72,9 @@ function beautify(content) {
   // Remove page numbers and spacing between pages
   let pageNumbers = content.querySelectorAll('*')
   pageNumbers = pageNumbers.forEach((pageNumber) => {
-    if (pageNumber.style.height === '42.75pt' && pageNumber.style.position === 'relative' && pageNumber.style.width === '100%') {
+    if ((pageNumber.style.height === '42.75pt' || pageNumber.style.height === '36pt') && pageNumber.style.position === 'relative' && pageNumber.style.width === '100%') {
       pageNumber.remove()
-    } else if (pageNumber.style.minHeight === '42.75pt' && pageNumber.style.width === '100%') {
+    } else if ((pageNumber.style.minHeight === '42.75pt' || pageNumber.style.minHeight === '36pt') && pageNumber.style.width === '100%') {
       pageNumber.remove()
     }
   })
